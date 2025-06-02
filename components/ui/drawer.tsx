@@ -69,6 +69,8 @@ export function Drawer({ open = false, onOpenChange, children }: DrawerProps) {
   )
 }
 
+type WithOnClick<T> = T extends React.ReactElement<infer P> ? React.ReactElement<P & { onClick?: () => void }> : never;
+
 export function DrawerTrigger({ children, asChild }: DrawerTriggerProps) {
   const { onOpenChange } = React.useContext(DrawerContext)
 
@@ -77,9 +79,12 @@ export function DrawerTrigger({ children, asChild }: DrawerTriggerProps) {
   }
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, {
-      onClick: handleClick,
-    })
+    return React.cloneElement(children as React.ReactElement<{ onClick?: (e: React.MouseEvent) => void }>, {
+      onClick: (e: React.MouseEvent) => {
+        (children as React.ReactElement<{ onClick?: (e: React.MouseEvent) => void }>).props.onClick?.(e);
+        handleClick();
+      },
+    });
   }
 
   return <button onClick={handleClick}>{children}</button>
