@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { MessageSquare, Phone, Mail, MapPin, Clock, HelpCircle, Github, Linkedin } from "lucide-react"
+import { MessageSquare, Phone, Mail, MapPin, Clock, HelpCircle, Linkedin } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from "next/link"
 import { sendContactEmail, type ContactFormData } from "@/lib/emailjs"
@@ -249,14 +249,6 @@ export default function Contact() {
                       >
                         <Linkedin className="h-4 w-4 mr-1" />
                         LinkedIn
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="flex-1"
-                        onClick={() => window.open("https://github.com/LouiziM", "_blank")}
-                      >
-                        <Github className="h-4 w-4 mr-1" />
-                        GitHub
                       </Button>
                     </div>
                   </div>

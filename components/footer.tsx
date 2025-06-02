@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
-import { Heart, Github, Linkedin, Mail, Phone } from "lucide-react"
+import { Heart, Linkedin, Mail, Phone } from "lucide-react"
 
 export default function Footer() {
   const router = useRouter()
@@ -89,14 +89,6 @@ export default function Footer() {
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="https://github.com/LouiziM"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Github className="h-5 w-5" />
               </a>
             </div>
           </div>

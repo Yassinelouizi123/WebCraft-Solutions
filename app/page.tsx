@@ -7,7 +7,6 @@ import Process from "@/components/process"
 import Testimonials from "@/components/testimonials"
 import Contact from "@/components/contact"
 import Technologies from "@/components/technologies"
-import Blog from "@/components/blog"
 
 export default function Home() {
   return (
@@ -20,7 +19,6 @@ export default function Home() {
       <Process />
       <Technologies />
       <Testimonials />
-      <Blog />
       <Contact />
     </main>
   )

@@ -71,7 +71,7 @@ export default function Process() {
 
                 {/* Connection Line */}
                 {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-blue-800 to-purple-600 transform -translate-y-1/2 z-10"></div>
+                  <div className="hidden lg:block absolute top-1/2 -right-8 w-8 h-0.5 bg-gradient-to-r from-blue-800 to-purple-600 transform -translate-y-1/2 z-10"></div>
                 )}
               </div>
             ))}
