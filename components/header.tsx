@@ -60,12 +60,12 @@ export default function Header() {
         isScrolled || pathname !== "/" ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-4 py-4">
+      <nav className="container mx-auto px-4 py-4 ">
         <div className="flex items-center justify-between">
           <Link
             href="/"
             className={`text-2xl font-inter font-bold transition-colors duration-200 ${
-              isScrolled || pathname !== "/" 
+              isScrolled || pathname !== "/"
                 ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                 : "text-white hover:text-gray-200"
             }`}
@@ -80,7 +80,7 @@ export default function Header() {
                 key={item.sectionId}
                 onClick={() => handleSectionClick(item.sectionId)}
                 className={`font-medium transition-colors duration-200 ${
-                  isScrolled || pathname !== "/" 
+                  isScrolled || pathname !== "/"
                     ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                     : "text-white hover:text-gray-200"
                 }`}
@@ -148,40 +148,69 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div
-            className={`md:hidden mt-4 pb-4 border-t ${
-              isScrolled ? "border-purple-200 dark:border-purple-700" : "border-white/20"
-            }`}
-          >
-            <div className="flex flex-col space-y-4 pt-4">
-              {/* Mobile Search */}
-              <div className="w-full">
-                <SearchDropdown />
+          <div className="md:hidden fixed top-0 left-0 right-0 bottom-0 z-40 bg-black/50 backdrop-blur-sm">
+            <div className="bg-white dark:bg-gray-900 w-full shadow-2xl">
+              {/* Mobile Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                <Link
+                  href="/"
+                  className="text-xl font-bold text-purple-700 dark:text-purple-400"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  WebCraft Solutions
+                </Link>
+                <div className="flex items-center space-x-2">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                    className="text-gray-600 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400"
+                  >
+                    <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-gray-600 dark:text-gray-400 hover:text-purple-700 dark:hover:text-purple-400"
+                  >
+                    <X className="h-6 w-6" />
+                  </Button>
+                </div>
               </div>
 
-              {navItems.map((item) => (
-                <button
-                  key={item.sectionId}
-                  onClick={() => handleSectionClick(item.sectionId)}
-                  className={`transition-colors duration-200 text-left ${
-                    isScrolled || pathname !== "/"
-                      ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
-                      : "text-white hover:text-gray-200"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-              <Button
-                className={`w-full transition-colors duration-200 ${
-                  isScrolled
-                    ? "bg-purple-700 hover:bg-purple-800 text-white"
-                    : "bg-white text-blue-800 hover:bg-gray-100"
-                }`}
-                onClick={scrollToContact}
-              >
-                Get Free Quote
-              </Button>
+              {/* Mobile Content */}
+              <div className="p-6 space-y-6">
+                {/* Mobile Search */}
+                <div className="w-full">
+                  <SearchDropdown />
+                </div>
+
+                {/* Navigation Links */}
+                <div className="space-y-1">
+                  {navItems.map((item, index) => (
+                    <button
+                      key={item.sectionId}
+                      onClick={() => handleSectionClick(item.sectionId)}
+                      className="w-full text-left px-4 py-3 rounded-lg text-lg font-medium text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-purple-900/20 hover:text-purple-700 dark:hover:text-purple-400 transition-all duration-200 border border-transparent hover:border-purple-200 dark:hover:border-purple-700"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <Button
+                    className="w-full py-3 text-lg font-semibold bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg hover:shadow-xl transition-all duration-200"
+                    onClick={scrollToContact}
+                  >
+                    Get Free Quote
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         )}

@@ -254,6 +254,8 @@ Total Estimated Cost: $${totalPrice}
       setIsSubmitting(false)
 
       if (success) {
+        // Scroll to top before showing success message
+        window.scrollTo(0, 0)
         setSubmitted(true)
         toast.success("Quote request submitted successfully!")
 
