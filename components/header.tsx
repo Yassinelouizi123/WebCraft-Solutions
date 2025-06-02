@@ -57,7 +57,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
+        isScrolled || pathname !== "/" ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
@@ -65,7 +65,7 @@ export default function Header() {
           <Link
             href="/"
             className={`text-2xl font-inter font-bold transition-colors duration-200 ${
-              isScrolled
+              isScrolled || pathname !== "/" 
                 ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                 : "text-white hover:text-gray-200"
             }`}
@@ -80,7 +80,7 @@ export default function Header() {
                 key={item.sectionId}
                 onClick={() => handleSectionClick(item.sectionId)}
                 className={`font-medium transition-colors duration-200 ${
-                  isScrolled
+                  isScrolled || pathname !== "/" 
                     ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                     : "text-white hover:text-gray-200"
                 }`}
@@ -164,7 +164,7 @@ export default function Header() {
                   key={item.sectionId}
                   onClick={() => handleSectionClick(item.sectionId)}
                   className={`transition-colors duration-200 text-left ${
-                    isScrolled
+                    isScrolled || pathname !== "/"
                       ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                       : "text-white hover:text-gray-200"
                   }`}

@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -13,7 +14,7 @@ import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowLeft, ArrowRight, Calculator, Check, Clock, Save } from "lucide-react"
+import { ArrowLeft, ArrowRight, Calculator, Check, Clock } from "lucide-react"
 import { sendQuoteEmail, type QuoteFormData } from "@/lib/emailjs"
 import { toast } from "sonner"
 
@@ -298,7 +299,7 @@ Total Estimated Cost: $${totalPrice}
   // If form is submitted, show success message
   if (submitted) {
     return (
-      <div className="container mx-auto py-16 px-4">
+      <div className="container mx-auto py-32 px-4">
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
             <div className="mx-auto bg-green-100 p-3 rounded-full mb-4">
@@ -345,8 +346,14 @@ Total Estimated Cost: $${totalPrice}
   }
 
   return (
-    <div className="container mx-auto py-16 px-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-24 pb-12">
       <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+            <Link href="/" className="inline-flex items-center text-blue-800 hover:text-blue-900 mb-6">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Home
+            </Link>
+        </div>
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold mb-4">Project Quote Calculator</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
