@@ -315,7 +315,7 @@ Total Estimated Cost: $${totalPrice}
               Your estimated project cost: <strong>${totalPrice}</strong>
             </p>
             <p className="text-sm text-gray-500 mb-4">
-              A detailed quote has been sent to <strong>{email}</strong>
+              A detailed quote has been sent to  us 
             </p>
             <div className="bg-gray-50 p-4 rounded-lg text-left text-sm">
               <h4 className="font-semibold mb-2">Project Summary:</h4>
@@ -391,11 +391,11 @@ Total Estimated Cost: $${totalPrice}
             {step === 1 && (
               <div className="animate-fadeIn">
                 <h2 className="text-2xl font-semibold mb-6">1. Select Project Type</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 ">
                   {projectTypes.map((type) => (
                     <Card
                       key={type.id}
-                      className={`cursor-pointer transition-all ${
+                      className={`cursor-pointer transition-all max-w-[400px]  max-h-[160px] ${
                         projectType === type.id ? "ring-2 ring-blue-600 bg-blue-50" : "hover:bg-gray-50"
                       }`}
                       onClick={() => setProjectType(type.id)}
@@ -623,10 +623,7 @@ Total Estimated Cost: $${totalPrice}
                       Back
                     </Button>
                     <div className="space-x-2">
-                      <Button type="button" variant="outline" onClick={saveQuote}>
-                        <Save className="mr-2 h-4 w-4" />
-                        Save Quote
-                      </Button>
+
                       <Button type="submit" disabled={isSubmitting}>
                         {isSubmitting ? (
                           <>
