@@ -79,12 +79,9 @@ export function DrawerTrigger({ children, asChild }: DrawerTriggerProps) {
   }
 
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ onClick?: (e: React.MouseEvent) => void }>, {
-      onClick: (e: React.MouseEvent) => {
-        (children as React.ReactElement<{ onClick?: (e: React.MouseEvent) => void }>).props.onClick?.(e);
-        handleClick();
-      },
-    });
+    return React.cloneElement(children, {
+      onClick: handleClick,
+    } as React.HTMLAttributes<HTMLElement>);
   }
 
   return <button onClick={handleClick}>{children}</button>
