@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Eye } from "lucide-react"
@@ -7,11 +9,12 @@ import Link from "next/link"
 export default function Portfolio() {
   const projects = [
     {
-      title: "Bella Vista Restaurant",
-      type: "Restaurant Website",
-      description: "Modern restaurant website with online reservations and menu showcase",
-      image: "/placeholder.svg?height=300&width=400",
-      tags: ["WordPress", "Responsive", "Booking System"],
+      title: "Anime Threads ",
+      type: "Clothing Store",
+      description:
+        "Trendy anime-inspired clothing brand offering stylish apparel for fans and fashion-forward individuals. Features a responsive online store, detailed product displays, and seamless checkout experience.",
+      image: "/Anime Threads.png?height=400&width=600",
+      tags: ["E-commerce", "Responsive", "Anime", "Clothing"],
     },
     {
       title: "StyleHub Fashion",
@@ -90,10 +93,21 @@ export default function Portfolio() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                      <Button size="sm" className="bg-white text-black hover:bg-gray-100 flex-1">
-                        <Eye className="h-4 w-4 mr-1" />
-                        Live
-                      </Button>
+                      {project.title === "Anime Threads " ? (
+                        <Button
+                          size="sm"
+                          className="bg-white text-black hover:bg-gray-100 flex-1"
+                          onClick={() => window.open('https://anime-threads-store.vercel.app/', '_blank')}
+                        >
+                          <Eye className="h-4 w-4 mr-1" />
+                          Demo
+                        </Button>
+                      ) : (
+                        <Button size="sm" className="bg-white text-black hover:bg-gray-100 flex-1">
+                          <Eye className="h-4 w-4 mr-1" />
+                          Demo
+                        </Button>
+                      )}
                       <Button
                         size="sm"
                         variant="outline"

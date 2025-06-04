@@ -105,13 +105,12 @@ export const searchableContent: SearchableContent[] = [
 
   // Projects
   {
-    id: "bella-vista-restaurant",
-    title: "Bella Vista Restaurant",
-    content:
-      "Modern restaurant website with online reservations and menu showcase. WordPress, responsive design, booking system.",
+    id: "Anime Threads",
+    title: "Anime Threads",
+    content: "Trendy anime-inspired clothing brand offering stylish apparel for fans and fashion-forward individuals.",
     type: "project",
     url: "/projects",
-    category: "Restaurant",
+    category: "store",
   },
   {
     id: "stylehub-fashion",
