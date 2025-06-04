@@ -10,17 +10,25 @@ import SearchDropdown from "@/components/search-dropdown"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  // Start with solid background by default to prevent flash
+  const [isAtTop, setIsAtTop] = useState(false)
   const { theme, setTheme } = useTheme()
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+    const checkPosition = () => {
+      setIsAtTop(window.pageYOffset === 0)
     }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    // Check position immediately on mount after DOM is ready
+    checkPosition()
+
+    window.addEventListener("scroll", checkPosition)
+
+    return () => {
+      window.removeEventListener("scroll", checkPosition)
+    }
   }, [])
 
   const handleSectionClick = (sectionId: string) => {
@@ -54,10 +62,13 @@ export default function Header() {
     { sectionId: "contact", label: "Contact" },
   ]
 
+  // Determine if nav should be transparent
+  const shouldBeTransparent = isAtTop && pathname === "/"
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled || pathname !== "/" ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
+        !shouldBeTransparent ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-4 py-4 ">
@@ -65,7 +76,7 @@ export default function Header() {
           <Link
             href="/"
             className={`text-2xl font-inter font-bold transition-colors duration-200 ${
-              isScrolled || pathname !== "/"
+              !shouldBeTransparent
                 ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                 : "text-white hover:text-gray-200"
             }`}
@@ -80,7 +91,7 @@ export default function Header() {
                 key={item.sectionId}
                 onClick={() => handleSectionClick(item.sectionId)}
                 className={`font-medium transition-colors duration-200 ${
-                  isScrolled || pathname !== "/"
+                  !shouldBeTransparent
                     ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300"
                     : "text-white hover:text-gray-200"
                 }`}
@@ -98,7 +109,7 @@ export default function Header() {
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className={`transition-colors duration-200 ${
-                isScrolled
+                !shouldBeTransparent
                   ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
                   : "text-white hover:text-gray-200 hover:bg-white/10"
               }`}
@@ -108,7 +119,7 @@ export default function Header() {
             </Button>
             <Button
               className={`transition-colors duration-200 ${
-                isScrolled ? "bg-purple-700 hover:bg-purple-800 text-white" : "bg-white text-blue-800 hover:bg-gray-100"
+                !shouldBeTransparent ? "bg-purple-700 hover:bg-purple-800 text-white" : "bg-white text-blue-800 hover:bg-gray-100"
               }`}
               onClick={scrollToContact}
             >
@@ -123,7 +134,7 @@ export default function Header() {
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className={`transition-colors duration-200 ${
-                isScrolled
+                !shouldBeTransparent
                   ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
                   : "text-white hover:text-gray-200 hover:bg-white/10"
               }`}
@@ -136,7 +147,7 @@ export default function Header() {
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`transition-colors duration-200 ${
-                isScrolled
+                !shouldBeTransparent
                   ? "text-purple-700 dark:text-purple-400 hover:text-purple-900 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20"
                   : "text-white hover:text-gray-200 hover:bg-white/10"
               }`}

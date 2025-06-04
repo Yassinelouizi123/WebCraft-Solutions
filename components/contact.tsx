@@ -167,8 +167,8 @@ export default function Contact() {
                     <Label htmlFor="message">Project Details *</Label>
                     <Textarea
                       id="message"
-                      rows={12}
-                      placeholder="Tell me about your project, goals, and any specific requirements..."
+                      rows={14}
+                      placeholder="Tell me about your project, goals, target audience, and any specific features or design preferences you have in mind. The more details you provide, the better I can assist you!"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required
