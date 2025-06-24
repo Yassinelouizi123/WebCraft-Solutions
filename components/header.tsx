@@ -11,7 +11,7 @@ import SearchDropdown from "@/components/search-dropdown"
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   // Start with solid background by default to prevent flash
-  const [isAtTop, setIsAtTop] = useState(false)
+  const [isAtTop, setIsAtTop] = useState(true)
   const { theme, setTheme } = useTheme()
   const router = useRouter()
   const pathname = usePathname()
